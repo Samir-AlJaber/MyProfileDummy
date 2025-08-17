@@ -1,14 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import HomePage from "./Home/HomePage";
+import ProfilePage from "./Home/ProfilePage";
+import ArticlesPage from "./Home/ArticlesPage";
+import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS is required now
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Redirect default "/" to page 1 */}
-        <Route path="/" element={<Navigate to="/page/1" />} />
-        <Route path="/page/:page" element={<HomePage />} />
+        <Route path="/" element={<ProfilePage />} />
+        <Route path="/articles/page/:page" element={<ArticlesPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );

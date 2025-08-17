@@ -4,38 +4,34 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./HomePage.css";
 import profilePic from "../assets/profile.jpg";
 
-const HomePage = () => {
+const ArticlesPage = () => {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
   const { page } = useParams();
   const currentPage = page ? +page : 1;
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleSidebar = () => setIsOpen(!isOpen);
 
-  // Dummy data per page
   const articlesData = {
     1: [
-      { id: 1, title: "Intro to React", date: "2025-08-01", status: "Published" },
-      { id: 2, title: "Advanced JS", date: "2025-08-05", status: "Draft" },
+      { id: 1, title: "React Intro   ", date: "2025-08-01", status: "Published" },
+      { id: 2, title: "JS Advanced   ", date: "2025-08-05", status: "Draft" },
     ],
     2: [
-      { id: 3, title: "UI/UX Design Basics", date: "2025-08-10", status: "Published" },
-      { id: 4, title: "Database Management", date: "2025-08-15", status: "Pending" },
+      { id: 3, title: "UI/UX Basics  ", date: "2025-08-10", status: "Published" },
+      { id: 4, title: "DB Management ", date: "2025-08-15", status: "Pending" },
     ],
     3: [
-      { id: 5, title: "Node.js Fundamentals", date: "2025-08-20", status: "Published" },
-      { id: 6, title: "CSS Grid & Flexbox", date: "2025-08-25", status: "Draft" },
+      { id: 5, title: "Node.js Basics", date: "2025-08-20", status: "Published" },
+      { id: 6, title: "CSS Advanced  ", date: "2025-08-25", status: "Draft" },
     ],
   };
 
   const articles = articlesData[currentPage] || [];
-
   const totalPages = Object.keys(articlesData).length;
 
   const handlePageClick = (pageNumber) => {
-    navigate(`/page/${pageNumber}`);
+    navigate(`/articles/page/${pageNumber}`);
   };
 
   const renderBadge = (status) => {
@@ -59,8 +55,8 @@ const HomePage = () => {
           {isOpen ? "⮜" : "⮞"}
         </button>
         <ul>
-          <li>{isOpen ? "Profile" : "👤"}</li>
-          <li>{isOpen ? "My Articles" : "📝"}</li>
+          <li onClick={() => navigate("/")}>{isOpen ? "Profile" : "👤"}</li>
+          <li onClick={() => navigate("/articles/page/1")}>{isOpen ? "My Articles" : "📝"}</li>
         </ul>
       </div>
 
@@ -103,24 +99,21 @@ const HomePage = () => {
           {/* Pagination */}
           <Pagination className="justify-content-center mt-3">
             <Pagination.Prev onClick={() => handlePageClick(Math.max(1, currentPage - 1))} />
-  
-                {[...Array(totalPages)].map((_, i) => (
-                    <Pagination.Item
-                        key={i + 1}
-                        active={currentPage === i + 1}
-                        onClick={() => handlePageClick(i + 1)}
-                    >
-                        {i + 1}
-                    </Pagination.Item>
-                ))}
-  
+            {[...Array(totalPages)].map((_, i) => (
+              <Pagination.Item
+                key={i + 1}
+                active={currentPage === i + 1}
+                onClick={() => handlePageClick(i + 1)}
+              >
+                {i + 1}
+              </Pagination.Item>
+            ))}
             <Pagination.Next onClick={() => handlePageClick(Math.min(totalPages, currentPage + 1))} />
-        </Pagination>
-
+          </Pagination>
         </div>
       </div>
     </div>
   );
 };
 
-export default HomePage;
+export default ArticlesPage;

@@ -34,18 +34,7 @@
   padding: 8px 12px;
   border-radius: 6px;
   transition: background 0.2s ease;
-
-  white-space: nowrap;      /* prevent text wrapping */
-  overflow: hidden;         /* hide overflow */
-  text-overflow: ellipsis;  /* show ... if too long */
 }
-
-/* center text when collapsed */
-.sidebar.collapsed li {
-  text-align: center;
-  padding: 8px 0;           /* remove horizontal padding */
-}
-
 .sidebar li:hover {
   background: rgba(255,255,255,0.1);
 }
@@ -60,16 +49,15 @@
   font-size: 16px;
 }
 
-/* Main Content (center wrapper) */
+/* Main Content */
 .main-content {
   flex: 1;
   display: flex;
-  justify-content: center;  /* center horizontally */
-  align-items: center;      /* center vertically */
+  justify-content: center;
+  align-items: center;
   background: #f8fafc;
   padding: 20px;
 }
-
 .content-wrapper {
   width: 100%;
   max-width: 850px;
@@ -134,38 +122,55 @@ th {
   background: #f8fafc;
 }
 
-/* Badges */
-.badge {
-  padding: 6px 14px;
-  border-radius: 20px;
-  color: white;
-  font-size: 13px;
-  font-weight: 500;
-}
-.badge.green { background: #16a34a; }
-.badge.yellow { background: #facc15; color: black; }
-.badge.blue { background: #3b82f6; }
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-.pagination button {
-  margin: 0 6px;
-  padding: 8px 14px;
-  border: none;
-  background: #e2e8f0;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-.pagination button:hover {
-  background: #cbd5e1;
-}
-.pagination button.active {
-  background: #3b82f6;
+/* Pagination (Bootstrap overrides optional) */
+.pagination .page-item.active .page-link {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
   color: #fff;
+}
+.pagination .page-link {
+  cursor: pointer;
+}
+
+/* Bio under profile info */
+.profile-bio {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #334155;
+}
+
+/* Stats Card */
+.stats-card {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-top: 20px;
+}
+.stat h3 {
+  margin: 0;
+  font-size: 24px;
   font-weight: 600;
+  color: #3b82f6;
+}
+.stat p {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: #475569;
+}
+
+/* Footer */
+.profile-footer {
+  margin-top: 25px;
+  background: #f1f5f9;
+  padding: 15px 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #475569;
+}
+.profile-footer p {
+  margin: 6px 0;
 }
